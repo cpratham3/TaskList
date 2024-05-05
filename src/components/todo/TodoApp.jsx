@@ -8,6 +8,8 @@ import {
   useParams,
   Link
 } from "react-router-dom";
+import LogoutComponent from "./LogoutComponent";
+import FooterComponent from "./FooterComponent";
 
 export default function TodoApp() {
   return (
@@ -181,46 +183,28 @@ function HeaderComponent() {
   return (
 
     <header className="border-bottom border-light border-5 mb-5 p-2">
-    <div className="container">
+      <div className="container">
         <div className="row">
-            <nav className="navbar navbar-expand-lg">
-                <a className="navbar-brand ms-2 fs-2 fw-bold text-black" href="https://github.com/cpratham3">in28minutes</a>
-                <div className="collapse navbar-collapse">
-                    <ul className="navbar-nav">
-                        <li className="nav-item fs-5"><Link className="nav-link" to="/welcome/admin">Home</Link></li>
-                        <li className="nav-item fs-5"><Link className="nav-link" to="/todos">Todos</Link></li>
-                    </ul>
-                </div>
-                <ul className="navbar-nav">
-                    <li className="nav-item fs-5"><Link className="nav-link" to="/login">Login</Link></li>
-                    <li className="nav-item fs-5"><Link className="nav-link" to="/logout">Logout</Link></li>
-                </ul>
-            </nav>
+          <nav className="navbar navbar-expand-lg">
+            <a className="navbar-brand ms-2 fs-2 fw-bold text-black" href="https://github.com/cpratham3">TaskList</a>
+            <div className="collapse navbar-collapse">
+              <ul className="navbar-nav">
+                <li className="nav-item fs-5"><Link className="nav-link" to="/welcome/admin">Home</Link></li>
+                <li className="nav-item fs-5"><Link className="nav-link" to="/todos">Todos</Link></li>
+              </ul>
+            </div>
+            <ul className="navbar-nav">
+              <li className="nav-item fs-5"><Link className="nav-link" to="/login">Login</Link></li>
+              <li className="nav-item fs-5"><Link className="nav-link" to="/logout">Logout</Link></li>
+            </ul>
+          </nav>
         </div>
-    </div>
-</header>
-
-
-  );
-}
-
-function FooterComponent() {
-  return (
-    <>
-      <footer className='Footer'>
-        <hr /> Footer
-      </footer>
-    </>
-  );
-}
-
-function LogoutComponent() {
-  return (
-    <>
-      <div className="LogoutComponent">
-        <h1>You are logged out</h1>
-        <div>Thank You for using our App. Come back soon</div>
       </div>
-    </>
+    </header>
+
+
   );
 }
+
+
+
