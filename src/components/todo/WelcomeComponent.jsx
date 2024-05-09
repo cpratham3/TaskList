@@ -7,7 +7,7 @@ export default function WelcomeComponent() {
     // console.log(params.username)
     // alternate way
     const { username } = useParams();
-    console.log(username);
+
   
     return (
       <div className="WelcomeComponent">
