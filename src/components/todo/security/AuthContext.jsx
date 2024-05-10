@@ -15,7 +15,7 @@ export default function AuthProvider({ children }) {
     const valueToBeShared = {isAuthenticated,login,logout}
 
     function login(username,password){
-        
+    
         if (username === "admin" && password === "admin") {
             setAuthenticated(true)
             return true
