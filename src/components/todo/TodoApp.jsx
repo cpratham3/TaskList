@@ -14,7 +14,7 @@ import ListTodosComponent from "./ListTodosComponent";
 import ErrorComponent from "./ErrorComponent";
 import WelcomeComponent from "./WelcomeComponent";
 import LoginComponent from "./LoginComponent";
-import AuthProvider from "./security/AuthContext";
+import AuthProvider, { useAuth } from "./security/AuthContext";
 
 function AuthenticatedRoute({ children }) {
   const authContext = useAuth()
@@ -30,18 +30,33 @@ export default function TodoApp() {
         <BrowserRouter>
           <HeaderComponent />
           <Routes>
-            <Route path="/login" element={<LoginComponent />}></Route>
-            <Route path="/" element={<LoginComponent />}></Route>
-            <AuthenticatedRoute>
+            <Route path="/login" element={<LoginComponent />}/>
+            <Route path="/" element={<LoginComponent />}/>
+            
               <Route
                 path="/welcome/:username"
-                element={<WelcomeComponent />}
-              ></Route>
-            </AuthenticatedRoute>
+                element={<AuthenticatedRoute>
+                    <WelcomeComponent/>  
+                    </AuthenticatedRoute> }
+              />
+            
 
-            <Route path="/todos" element={<ListTodosComponent />}></Route>
-            <Route path="/logout" element={<LogoutComponent />}></Route>
-            <Route path="/*" element={<ErrorComponent />}></Route>
+            <Route path="/todos" element={
+              <AuthenticatedRoute>
+            <ListTodosComponent />
+            </AuthenticatedRoute>
+            }/>
+            <Route path="/logout" element={
+              <AuthenticatedRoute>
+            <LogoutComponent />
+            </AuthenticatedRoute>
+            }/>
+            <Route path="/*" element={
+              <AuthenticatedRoute>
+            <ErrorComponent />
+            </AuthenticatedRoute>
+            }/>
+
           </Routes>
           <FooterComponent />
         </BrowserRouter>
