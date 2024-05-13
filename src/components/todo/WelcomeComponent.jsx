@@ -6,6 +6,8 @@ import axios from 'axios'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from "react";
+import { retrieveHelloWorld, retrieveHelloWorldPathVariable } from "./api/HelloWorldApiService";
 
 export default function WelcomeComponent() {
     // const params = useParams()
@@ -13,21 +15,28 @@ export default function WelcomeComponent() {
     // alternate way
     const { username } = useParams();
 
-    
-   
+    const [message, setMessage] = useState(null)
+
 
     function callHelloWorldRestAPI() {
-        
-         console.log('called');
-        axios.get('http://localhost:8080/hello-world')
-            .then((response) => successfulResponse(response))
-            .catch((error) => errorResponse(error))
-            .finally(() => console.log('cleanup'))
+
+
+        // retrieveHelloWorld()
+        //     .then((response) => successfulResponse(response))
+        //     .catch((error) => errorResponse(error))
+        //     .finally(() => console.log('cleanup'))
 
     }
 
+    retrieveHelloWorldPathVariable('admin')
+        .then((response) => successfulResponse(response))
+            .catch((error) => errorResponse(error))
+            .finally(() => console.log('cleanup'))
+    
+
     function successfulResponse(response) {
         console.log(response);
+        setMessage(response.data)
     }
 
     function errorResponse(error) {
