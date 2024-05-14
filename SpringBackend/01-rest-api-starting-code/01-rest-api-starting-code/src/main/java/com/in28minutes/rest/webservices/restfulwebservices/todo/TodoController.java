@@ -20,4 +20,10 @@ public class TodoController {
         return todoService.findByUsername(username);
 
     }
+
+    @GetMapping("/users/{username}/todos/{id}")
+    public List<Todo> retrieveTodo(@PathVariable String username){
+        return todoService.findByUsername(username);
+
+    }
 }
