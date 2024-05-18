@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { retrieveAllTodosForUsernameApi } from "./api/TodoApiService";
 import { deleteTodoApi } from "./api/TodoApiService";
+import { useAuth } from "./security/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function ListTodosComponent() {
 
     const today = new Date();
+    const authContext = useAuth()
+    const username = authContext.username
+    const navigate = useNavigate()
+
     const targetDate = new Date(today.getFullYear() + 12, today.getMonth(), today.getDay())
 
     const [todos, setTodos] = useState([])
@@ -26,7 +32,7 @@ export default function ListTodosComponent() {
 
     function refreshTodos() {
 
-        retrieveAllTodosForUsernameApi('admin')
+        retrieveAllTodosForUsernameApi(username)
             .then((response) => {
                 console.log(response)
                 setTodos(response.data)
@@ -36,7 +42,7 @@ export default function ListTodosComponent() {
     }
     function deleteTodo(id) {
         console.log('clicked' + id)
-        deleteTodoApi('admin', id)
+        deleteTodoApi(username, id)
             .then(
                 () => {
                     setMessage(` Todo with id : ${id} successfully deleted`)
@@ -48,6 +54,10 @@ export default function ListTodosComponent() {
 
             )
             .catch(error => console.log(error))
+    }
+    function updateTodo(id) {
+        console.log('clicked' + id)
+        navigate(`/todo/${id}`)
     }
 
     return (
@@ -62,6 +72,7 @@ export default function ListTodosComponent() {
                             <th>Completed</th>
                             <th>Target Date</th>
                             <th>Delete</th>
+                            <th>Update</th>
 
                         </tr>
                     </thead>
@@ -74,6 +85,7 @@ export default function ListTodosComponent() {
                                     {/* <td>{todo.targetDate.toDateString()}</td> */}
                                     <td>{todo.targetDate.toString()}</td>
                                     <td><button className='btn btn-danger' onClick={() => deleteTodo(todo.id)}>Delete</button></td>
+                                    <td><button className='btn btn-warning' onClick={() => updateTodo(todo.id)}>Update</button></td>
                                 </tr>
                             ))
                         }
