@@ -6,9 +6,11 @@ const apiClient = axios.create(
     }
 )
 
-export function retrieveAllTodosForUsername(username){
+export function retrieveAllTodosForUsernameApi(username) {
     return apiClient.get(`/users/${username}/todos`)
-
 }
-export const retrieveHelloWorldPathVariable 
-= (username) => axios.get(`http://localhost:8080/hello-world/path-variable/${username}`)
+
+export function deleteTodoApi(username, id) {
+    return apiClient.delete(`/users/${username}/todos/${id}`)
+}
+
