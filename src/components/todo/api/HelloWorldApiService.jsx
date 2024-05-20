@@ -5,9 +5,9 @@ const apiClient = axios.create(
     }
 )
 
-export function retrieveHelloWorld(){
+export function retrieveHelloWorld() {
     return apiClient.get('/hello-world')
 
 }
-export const retrieveHelloWorldPathVariable 
-= (username) => axios.get(`http://localhost:8080/hello-world/path-variable/${username}`)
+export const retrieveHelloWorldPathVariable
+    = (username) => axios.get(`http://localhost:8080/hello-world/path-variable/${username}`)
