@@ -42,7 +42,13 @@ export default function AuthProvider({ children }) {
                 setAuthenticated(true)
                 setUsername(username)
                 setToken(baToken)
-                apiClient.interceptors.request.
+                apiClient.interceptors.request.use(
+                    (config) => {
+                        console.log('intercepting and adding a token')
+                        config.headers.Authorization = baToken
+                        return config
+                    }
+                )
                 return true
 
             } else {
