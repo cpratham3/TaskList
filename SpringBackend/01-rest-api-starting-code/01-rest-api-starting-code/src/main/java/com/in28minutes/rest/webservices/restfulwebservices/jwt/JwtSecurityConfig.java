@@ -49,7 +49,7 @@ public class JwtSecurityConfig {
         return httpSecurity
                 .authorizeHttpRequests(auth -> auth
                         .antMatchers("/authenticate").permitAll()
-//                        .antMatchers("/h2-console/**").permitAll() // h2-console is a servlet and NOT recommended for a production
+                        .antMatchers("/h2-console/**").permitAll() // h2-console is a servlet and NOT recommended for a production
                         .antMatchers(HttpMethod.OPTIONS,"/**")
                         .permitAll()
                         .anyRequest()
