@@ -14,7 +14,7 @@ public class BasicAuthenticationSecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(
                 auth -> auth
-                        .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+                        .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                         .anyRequest().authenticated())
         .httpBasic(Customizer.withDefaults())
         .sessionManagement(
