@@ -10,4 +10,8 @@ export function retrieveHelloWorld() {
 
 }
 export const retrieveHelloWorldPathVariable
-    = (username) => axios.get(`http://localhost:8080/hello-world/path-variable/${username}`)
+    = (username) => axios.get(`http://localhost:8080/hello-world/path-variable/${username}`,{
+        headers: {
+            Authorization : 'Basic YWRtaW46YWRtaW4='
+        }
+    })
