@@ -49,9 +49,9 @@ return todoRepository.findById(id).get();
 
     @PostMapping("/users/{username}/todos")
     public Todo createTodo(@PathVariable String username,  @RequestBody Todo todo){
-        Todo createdTodo = todoService.addTodo(username,todo.getDescription(),todo.getTargetDate(),todo.isDone());
-        return createdTodo;
-
+        todo.setUsername(username);
+        todo.setId(null);
+        return todoRepository.save(todo);
     }
 
 
