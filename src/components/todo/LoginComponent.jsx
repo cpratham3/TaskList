@@ -29,6 +29,10 @@ export default function LoginComponent() {
         }
     }
 
+    function handleRegister(){
+        navigate(`/register`)
+    }
+
     return (
         <div className="Login">
             <h1>Please Login to view Tasks</h1>
@@ -60,7 +64,12 @@ export default function LoginComponent() {
                     <button type="button" name="login" onClick={handleSubmit}>
                         Login
                     </button>
+
+                    <button type="button" name="register" onClick={handleRegister}>
+                        Register
+                    </button>
                 </div>
+
             </div>
         </div>
     );

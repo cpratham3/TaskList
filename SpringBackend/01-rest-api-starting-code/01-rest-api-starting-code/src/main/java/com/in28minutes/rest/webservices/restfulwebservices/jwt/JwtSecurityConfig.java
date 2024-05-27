@@ -22,6 +22,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
@@ -49,7 +51,8 @@ public class JwtSecurityConfig {
         return httpSecurity
                 .authorizeHttpRequests(auth -> auth
                         .antMatchers("/authenticate").permitAll()
-                        .antMatchers("/h2-console/**").permitAll() // h2-console is a servlet and NOT recommended for a production
+                        .antMatchers("/h2-console/**").permitAll()
+                        .antMatchers("/api/auth/register").permitAll()// h2-console is a servlet and NOT recommended for a production
                         .antMatchers(HttpMethod.OPTIONS,"/**")
                         .permitAll()
                         .anyRequest()
@@ -126,6 +129,12 @@ public class JwtSecurityConfig {
             throw new IllegalStateException(
                     "Unable to generate an RSA Key Pair", e);
         }
+    }
+
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }
