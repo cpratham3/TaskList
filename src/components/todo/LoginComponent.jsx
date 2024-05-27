@@ -1,6 +1,4 @@
-import {
-    useNavigate
-} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import { useState } from "react"
 import { useAuth } from "./security/AuthContext"
 
@@ -35,12 +33,8 @@ export default function LoginComponent() {
         <div className="Login">
             <h1>Please Login to view Tasks</h1>
 
-            {showSuccessMessage && (
-                <div className="successMessage">Authenticated Successfully</div>
-            )}
-            {showErrorMessage && (
-                <div className="errorMessage">Authentication Failed</div>
-            )}
+            {showSuccessMessage && ( <div className="successMessage">Authenticated Successfully</div>)}
+            {showErrorMessage && (<div className="errorMessage">Authentication Failed</div>)}
             <div className="LoginForm">
                 <div>
                     <label>User Name</label>
